@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Validation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+    }
+    .success {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>Form Validation</h1>
+  <form id="validationForm">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name">
+    <div id="nameError" class="error"></div>
+    <br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email">
+    <div id="emailError" class="error"></div>
+    <br>
+
+    <label for="phone">Phone Number:</label><br>
+    <input type="text" id="phone" name="phone" placeholder="123-456-7890">
+    <div id="phoneError" class="error"></div>
+    <br>
+
+    <button type="submit">Submit</button>
+  </form>
+  <div id="formStatus" class="success"></div>
+
+  <script>
+    const form = document.getElementById("validationForm");
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const phoneInput = document.getElementById("phone");
+
+    const nameError = document.getElementById("nameError");
+    const emailError = document.getElementById("emailError");
+    const phoneError = document.getElementById("phoneError");
+    const formStatus = document.getElementById("formStatus");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      let isValid = true;
+
+      // Name validation
+      const nameValue = nameInput.value.trim();
+      if (nameValue === "" || !/^[a-zA-Z ]+$/.test(nameValue)) {
+        nameError.textContent = "Please enter a valid name (letters and spaces only).";
+        isValid = false;
+      } else {
+        nameError.textContent = "";
+      }
+
+      // Email validation
+      const emailValue = emailInput.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
+        emailError.textContent = "Please enter a valid email address.";
+        isValid = false;
+      } else {
+        emailError.textContent = "";
+      }
+      // Phone number validation
+      const phoneValue = phoneInput.value.trim();
+      if (!/^\d{3}-\d{3}-\d{4}$/.test(phoneValue)) {
+        phoneError.textContent = "Please enter a valid phone number (e.g., 123-456-7890).";
+        isValid = false;
+      } else {
+        phoneError.textContent = "";
+      }
+      // Form status
+      if (isValid) {
+        formStatus.textContent = "Form submitted successfully!";
+        form.reset();
+      } else {
+        formStatus.textContent = "";
+      }
+    });
+  </script>
+</body>
+</html>

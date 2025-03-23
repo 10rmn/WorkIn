@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Job Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="job.html">Jobs</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html" class="active">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+    <script>
+        function validateForm() {
+            const username = document.forms["registrationForm"]["username"].value.trim();
+            const password = document.forms["registrationForm"]["password"].value.trim();
+            const cpassword = document.forms["registrationForm"]["cpassword"].value.trim();
+
+            if (!username || !password || !cpassword) {
+                alert("Please fill out all fields.");
+                return false;
+            }
+
+            if (password !== cpassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+    
+
+    <main>
+        <section id="register">
+            <h1>Create an Account</h1>
+            <form action="register.php" method="POST" class="form-container">
+                <div class="container my-4">
+                    <!-- <h1 class="text-center">Signup to our website</h1> -->
+                    <form action="/loginsystem/signup.php" method="post">
+                       <div class="form-group">
+                           <label for="username">Username</label>
+                           <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
+                           
+                       </div>
+                       <div class="form-group">
+                           <label for="password">Password</label>
+                           <input type="password" class="form-control" id="password" name="password">
+                       </div>
+                       <div class="form-group">
+                           <label for="cpassword">Confirm Password</label>
+                           <input type="password" class="form-control" id="cpassword" name="cpassword">
+                           
+                       </div>
+                <button type="submit" class="btn">Register</button>
+            </form>
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p style="text-align: right;">&copy; 2024 WorkIn. All rights reserved.</p>
+    </footer>
+    
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', (e) => {
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm_password').value;
+
+                if (password !== confirmPassword) {
+                    e.preventDefault();
+                    alert('Passwords do not match. Please try again.');
+                }
+            });
+        });
+        
+    </script> -->
+</body>
+
+</html>

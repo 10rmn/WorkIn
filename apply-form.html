@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Job</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="job.html">Jobs</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="form-container">
+            <h1>Apply for a Job</h1>
+            <form id="application-form" action="submit-application.php" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="resume">Resume</label>
+                    <input type="file" id="resume" name="resume" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cover">Cover Letter</label>
+                    <textarea id="cover" name="cover" placeholder="Write a brief cover letter" rows="5" required style="width: 420px;height:135px;"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="companies">Select Companies</label><br>
+                    <input type="checkbox" id="tech-innovations" name="companies" value="Tech Innovations">
+                    <label for="tech-innovations">Tech Innovations</label><br>
+                    <input type="checkbox" id="dataworks" name="companies" value="DataWorks">
+                    <label for="dataworks">DataWorks</label><br>
+                    <input type="checkbox" id="creative-minds" name="companies" value="Creative Minds">
+                    <label for="creative-minds">Creative Minds</label><br>
+                    <input type="checkbox" id="microsoft" name="companies" value="Microsoft">
+                    <label for="microsoft">Microsoft</label><br>
+                    <input type="checkbox" id="infosys" name="companies" value="Infosys">
+                    <label for="infosys">Infosys</label><br>
+                    <input type="checkbox" id="oracle" name="companies" value="Oracle">
+                    <label for="oracle">Oracle</label><br>
+                </div>
+
+                <button type="submit" class="btn">Submit Application</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Job Portal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('application-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const resume = document.getElementById('resume').files[0];
+            const cover = document.getElementById('cover').value;
+
+            // Get selected companies
+            const selectedCompanies = [];
+            const checkboxes = document.querySelectorAll('input[name="companies"]:checked');
+            checkboxes.forEach(function(checkbox) {
+                selectedCompanies.push(checkbox.value);
+            });
+
+            // If no company is selected, show an alert and exit
+            if (selectedCompanies.length === 0) {
+                alert("Please select at least one company.");
+                return;
+            }
+
+            // Simulate the form submission success and show the alert
+            alert("Thank you for applying! We will send further details to your email (" + email + "). We have sent your application to the following companies: " + selectedCompanies.join(", ") + ".");
+
+            // After showing the alert, reset the form (optional)
+            document.getElementById('application-form').reset();
+        });
+    </script>
+
+</body>
+
+</html>
